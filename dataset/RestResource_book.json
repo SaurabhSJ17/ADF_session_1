@@ -1,0 +1,15 @@
+{
+	"name": "RestResource_book",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RestService1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": "api/books?bibkeys=ISBN:0201558025,LCCN:93005405&format=json"
+		},
+		"schema": []
+	}
+}
