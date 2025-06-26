@@ -1,0 +1,56 @@
+{
+	"name": "test_5_2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"filename": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().filename",
+					"type": "Expression"
+				},
+				"fileSystem": "sjcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Sr.No",
+				"type": "String"
+			},
+			{
+				"name": "Roll Number",
+				"type": "String"
+			},
+			{
+				"name": "Applicant Name",
+				"type": "String"
+			},
+			{
+				"name": "Marks After Objection (Raw Score)",
+				"type": "String"
+			},
+			{
+				"name": "Pro Rated Marks",
+				"type": "String"
+			},
+			{
+				"name": "Marks after Normalization",
+				"type": "String"
+			}
+		]
+	}
+}

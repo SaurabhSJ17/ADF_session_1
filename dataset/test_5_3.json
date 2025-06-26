@@ -1,0 +1,26 @@
+{
+	"name": "test_5_3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"f_name": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().f_name",
+					"type": "Expression"
+				},
+				"fileSystem": "sjcontainer"
+			}
+		}
+	}
+}
