@@ -6,18 +6,67 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "DelimitedText4",
+						"referenceName": "DelimitedText5",
 						"type": "DatasetReference"
 					},
 					"name": "source1"
 				}
 			],
-			"sinks": [],
-			"transformations": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable5",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "select1"
+				}
+			],
 			"scriptLines": [
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          {ID   Name           Department          Salary  DOB       } as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source1"
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(ID = substring({ID   Name           Department          Salary  DOB       }, 1, 5),",
+				"          Name = substring({ID   Name           Department          Salary  DOB       }, 6, 10),",
+				"          {Department } = substring({ID   Name           Department          Salary  DOB       }, 21, 20),",
+				"          Salary = substring({ID   Name           Department          Salary  DOB       }, 41, 7),",
+				"          {DOB } = substring({ID   Name           Department          Salary  DOB       }, 49, 10)) ~> derivedColumn1",
+				"derivedColumn1 select(mapColumn(",
+				"          ID,",
+				"          Name,",
+				"          {Department },",
+				"          Salary,",
+				"          {DOB }",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: true,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          ID,",
+				"          Name,",
+				"          {Department },",
+				"          Salary,",
+				"          {DOB }",
+				"     )) ~> sink1"
 			]
 		}
 	}
