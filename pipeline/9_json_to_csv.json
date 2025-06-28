@@ -1,9 +1,9 @@
 {
-	"name": "8_convert_txt_into_csv_using_workflow",
+	"name": "9_json_to_csv",
 	"properties": {
 		"activities": [
 			{
-				"name": "dataflow1",
+				"name": "9_load_json_csv",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "8_covert_csv",
+						"referenceName": "9_load_json_csv",
 						"type": "DataFlowReference"
 					},
 					"compute": {
