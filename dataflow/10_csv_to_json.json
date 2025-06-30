@@ -1,5 +1,5 @@
 {
-	"name": "dataflow1",
+	"name": "10_csv_to_json",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -12,10 +12,21 @@
 					"name": "source1"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Json2",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "derivedColumn1"
+				},
+				{
+					"name": "aggregate1"
 				}
 			],
 			"scriptLines": [
@@ -30,12 +41,18 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
-				"source1 derive({SO Id} = ERROR_FUNCTION(''),",
-				"          SODate = ERROR_FUNCTION(''),",
-				"          Country = ERROR_FUNCTION(''),",
-				"          Item = ERROR_FUNCTION(''),",
-				"          Qty = ERROR_FUNCTION(''),",
-				"          Value = ERROR_FUNCTION('')) ~> derivedColumn1"
+				"source1 derive(Sales = @(Item_name=Item,",
+				"          No_Qty=Qty,",
+				"          Item_Values=Value)) ~> derivedColumn1",
+				"derivedColumn1 aggregate(groupBy({SO Id},",
+				"          SODate,",
+				"          Country),",
+				"     Sales = collect(Sales)) ~> aggregate1",
+				"aggregate1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
 			]
 		}
 	}
