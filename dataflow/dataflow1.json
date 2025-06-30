@@ -1,0 +1,42 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "10_csv",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          {SO Id} as string,",
+				"          SODate as string,",
+				"          Country as string,",
+				"          Item as string,",
+				"          Qty as string,",
+				"          Value as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive({SO Id} = ERROR_FUNCTION(''),",
+				"          SODate = ERROR_FUNCTION(''),",
+				"          Country = ERROR_FUNCTION(''),",
+				"          Item = ERROR_FUNCTION(''),",
+				"          Qty = ERROR_FUNCTION(''),",
+				"          Value = ERROR_FUNCTION('')) ~> derivedColumn1"
+			]
+		}
+	}
+}
