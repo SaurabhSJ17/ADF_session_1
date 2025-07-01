@@ -24,6 +24,7 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -146,10 +147,11 @@
 								},
 								"fieldList": [
 									"itemName",
-									"itemName"
+									"lastModified"
 								],
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
@@ -171,7 +173,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@greater(formatDateTime(activity('Get Metadata2').output.lastModified),formatDateTime(variables('LastModification')))",
+									"value": "@greater(formatDateTime(activity('Get Metadata2').output.lastModified),formatDateTime(variables('LastModified')))",
 									"type": "Expression"
 								},
 								"ifTrueActivities": [
@@ -202,7 +204,7 @@
 										},
 										"userProperties": [],
 										"typeProperties": {
-											"variableName": "LastModification",
+											"variableName": "LastModified",
 											"value": {
 												"value": "@activity('Get Metadata2').output.lastModified",
 												"type": "Expression"
@@ -220,9 +222,9 @@
 			"FileName": {
 				"type": "String"
 			},
-			"LastModification": {
+			"LastModified": {
 				"type": "String",
-				"defaultValue": "1920-01-01"
+				"defaultValue": "2000-01-01"
 			}
 		},
 		"annotations": []
