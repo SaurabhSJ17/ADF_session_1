@@ -5,7 +5,7 @@
 		"runtimeState": "Started",
 		"pipeline": {
 			"pipelineReference": {
-				"referenceName": "pipeline1",
+				"referenceName": "13_sort_files_by_size",
 				"type": "PipelineReference"
 			}
 		},
