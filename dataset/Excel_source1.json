@@ -1,0 +1,50 @@
+{
+	"name": "Excel_source1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"SheetName": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "17"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": {
+				"value": "@dataset().SheetName",
+				"type": "Expression"
+			},
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "multi_country_data_100_records.xlsx",
+				"folderPath": "input_mutiple_sheet",
+				"fileSystem": "files"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "ID",
+				"type": "String"
+			},
+			{
+				"name": "Name",
+				"type": "String"
+			},
+			{
+				"name": "City",
+				"type": "String"
+			},
+			{
+				"name": "Age",
+				"type": "String"
+			}
+		]
+	}
+}
