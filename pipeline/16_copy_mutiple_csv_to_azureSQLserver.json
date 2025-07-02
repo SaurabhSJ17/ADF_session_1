@@ -109,7 +109,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"TableName": {
-											"value": "@replace(replace(item().name, '.csv','' ),'.xlsx','')",
+											"value": "@replace(item().name, '.csv','' )",
 											"type": "Expression"
 										}
 									}
