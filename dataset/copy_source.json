@@ -1,9 +1,14 @@
 {
-	"name": "source_mutiple_excel",
+	"name": "copy_source",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage1",
 			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FileName": {
+				"type": "String"
+			}
 		},
 		"folder": {
 			"name": "15"
@@ -13,6 +18,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().FileName",
+					"type": "Expression"
+				},
 				"folderPath": "c_input_xlsx",
 				"fileSystem": "files"
 			},
