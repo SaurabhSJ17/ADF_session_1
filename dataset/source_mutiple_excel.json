@@ -1,0 +1,24 @@
+{
+	"name": "source_mutiple_excel",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "15"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "0",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "country_input",
+				"fileSystem": "files"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	}
+}
