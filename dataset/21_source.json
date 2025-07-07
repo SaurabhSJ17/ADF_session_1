@@ -1,0 +1,63 @@
+{
+	"name": "21_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "customers_details.json",
+				"folderPath": "input",
+				"fileSystem": "files"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"data": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "integer"
+							},
+							"name": {
+								"type": "string"
+							},
+							"address": {
+								"type": "object",
+								"properties": {
+									"state": {
+										"type": "string"
+									},
+									"city": {
+										"type": "string"
+									},
+									"country": {
+										"type": "string"
+									}
+								}
+							},
+							"contact": {
+								"type": "object",
+								"properties": {
+									"phone_no": {
+										"type": "string"
+									},
+									"email": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

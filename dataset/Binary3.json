@@ -10,6 +10,9 @@
 				"type": "String"
 			}
 		},
+		"folder": {
+			"name": "20"
+		},
 		"annotations": [],
 		"type": "Binary",
 		"typeProperties": {
