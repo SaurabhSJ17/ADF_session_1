@@ -1,0 +1,9 @@
+{
+	"name": "practice1-git2",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "beb9a97d-b69b-4d9d-b39c-7e680c4fce42",
+		"tenantId": "80aca00d-a563-4e49-a834-cbdbf0df2967"
+	}
+}
