@@ -1,0 +1,42 @@
+{
+	"name": "ds_cust_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "19"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "customer.json",
+				"folderPath": "c_input_xlsx",
+				"fileSystem": "files"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"cust_id": {
+					"type": "integer"
+				},
+				"first_name": {
+					"type": "string"
+				},
+				"last_name": {
+					"type": "string"
+				},
+				"city": {
+					"type": "string"
+				},
+				"enroll_dt": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
